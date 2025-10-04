@@ -3,7 +3,8 @@
 import { GoogleGenAI, GenerateContentResponse, Type } from "@google/genai";
 import { Processor } from '../types';
 
-export const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+export const ai = new GoogleGenAI({ apiKey });
 
 const generateContent = async (prompt: string): Promise<string> => {
   try {
