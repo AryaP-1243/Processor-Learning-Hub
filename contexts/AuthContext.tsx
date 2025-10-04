@@ -20,10 +20,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   useEffect(() => {
     // This effect runs once on mount to check for an existing session.
     try {
-      const currentUser = authService.getCurrentUser();
-      if (currentUser) {
-        setUser(currentUser);
+      let currentUser = authService.getCurrentUser();
+      if (!currentUser) {
+        currentUser = authService.autoLoginDev();
       }
+      setUser(currentUser);
     } catch (error) {
       console.error("Error loading user session:", error);
     } finally {

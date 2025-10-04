@@ -78,3 +78,9 @@ export const getCurrentUser = (): User | null => {
         return null;
     }
 };
+
+export const autoLoginDev = (): User => {
+    const devUser: User = { username: 'dev-user' };
+    sessionStorage.setItem(CURRENT_USER_KEY, JSON.stringify(devUser));
+    return devUser;
+};
